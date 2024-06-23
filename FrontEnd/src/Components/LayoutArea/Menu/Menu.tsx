@@ -8,6 +8,7 @@ export function Menu(): JSX.Element {
       <NavLink to='/products'>Products</NavLink>
       <NavLink to='/about'>About</NavLink>
       <NavLink to='/employees'>Employees</NavLink>
+      <NavLink to='/users'>Users</NavLink>
     </div>
   );
 }

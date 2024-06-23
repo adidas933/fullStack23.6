@@ -1,7 +1,6 @@
 import { UploadedFile } from 'express-fileupload';
 import { ValidationError } from './client-error';
 import Joi from 'joi';
-
 export class EmployeeModel {
   public id: number;
   public firstName: string;
