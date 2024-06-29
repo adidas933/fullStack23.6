@@ -12,3 +12,19 @@ a {
   color: black;
 }
 
+form {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px grey;
+  border: 1px solid black;
+  margin: auto;
+}
+
+form > input,
+form > button {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}

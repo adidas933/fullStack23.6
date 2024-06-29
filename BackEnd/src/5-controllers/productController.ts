@@ -105,20 +105,20 @@ class ProductController {
     }
   }
 
-    // Get product image:
-    private async getProductImage(
-      request: Request,
-      response: Response,
-      next: NextFunction
-    ) {
-      try {
-        const imageName = request.params.imageName;
-        const imagePath = fileSaver.getFilePath(imageName, true);
-        response.sendFile(imagePath);
-      } catch (err: any) {
-        next(err);
-      }
+  // Get product image:
+  private async getProductImage(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    try {
+      const imageName = request.params.imageName;
+      const imagePath = fileSaver.getFilePath(imageName, true);
+      response.sendFile(imagePath);
+    } catch (err: any) {
+      next(err);
     }
+  }
 }
 
 export const productController = new ProductController();

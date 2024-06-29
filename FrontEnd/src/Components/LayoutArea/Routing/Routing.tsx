@@ -5,19 +5,28 @@ import { ProductList } from '../../ProductArea/ProductList/ProductList';
 import { About } from '../../AboutArea/About/About';
 import { Page404 } from '../Page404/Page404';
 import { EmployeeList } from '../../EmployeesArea/EmployeeList/EmployeeList';
+import { AddProduct } from '../../ProductArea/AddProduct/AddProduct';
+import { AddEmployee } from '../../EmployeesArea/AddEmployee/AddEmployee';
 import { Register } from '../../UserArea/Register/Register';
+import { Login } from '../../UserArea/Login/Login';
+import { UpdateEmployee } from '../../EmployeesArea/UpdateEmployee/UpdateEmployee';
 
 export function Routing(): JSX.Element {
   return (
-    <div className='Routing'>
+    <div className="Routing">
       <Routes>
-        <Route path='/' element={<Navigate to='/home' />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/products' element={<ProductList />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/employees' element={<EmployeeList />} />
-        <Route path='/register' element={<Register/>} />
-        <Route path='*' element={<Page404 />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/new-product" element={<AddProduct />} />
+        <Route path="/new-employee" element={<AddEmployee />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/employees" element={<EmployeeList />} />
+        <Route path="/updateEmployee/:id" element={<UpdateEmployee />} />
+
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );

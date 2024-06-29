@@ -11,7 +11,7 @@ class EmployeeService {
   public async getAllEmployees() {
     // Create sql:
     const sql =
-      "SELECT id, firstName, lastName, birthDate, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees";
+      "SELECT id, firstName, lastName, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees";
     // Execute:
     const employees = await dal.execute(sql);
     // Return:
@@ -20,7 +20,7 @@ class EmployeeService {
 
   public async getSpecificEmployee(id: number) {
     const sql =
-      "SELECT id, firstName, lastName, birthDate, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees";
+      "SELECT id, firstName, lastName, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees";
     const employees = await dal.execute(sql, [id]);
     const employee = employees[0];
     if (!employee) throw new ResourceNotFoundError(id);
@@ -33,17 +33,16 @@ class EmployeeService {
 
     const imageName = await fileSaver.add(
       employee.image,
-      path.join(__dirname, '1-assets/images/employeesImages')
+      path.join(__dirname, '../1-assets/images/employeesImages/')
     );
 
     // Create sql:
     const sql =
-      'INSERT INTO employees (firstName, lastName, birthDate, imageName) VALUES (?, ?, ?, ?)';
+      'INSERT INTO employees (firstName, lastName, imageName) VALUES (?, ?, ?)';
     // Execute:
     const info: OkPacketParams = await dal.execute(sql, [
       employee.firstName,
       employee.lastName,
-      employee.birthDate,
       imageName,
     ]);
 
@@ -56,16 +55,19 @@ class EmployeeService {
 
   public async updateEmployee(employee: EmployeeModel) {
     employee.validateUpdate();
+    const imageName = await fileSaver.add(
+      employee.image,
+      path.join(__dirname, "../1-assets/images/employeesImages/")
+    );
     const sql =
-      'UPDATE employees SET firstName = ?, lastName = ?, birthDate = ? WHERE id = ?';
+      'UPDATE employees SET firstName = ?, lastName = ?, imageName = ? WHERE id = ?';
     const info: OkPacketParams = await dal.execute(sql, [
       employee.firstName,
       employee.lastName,
-      employee.birthDate,
+      imageName,
       employee.id,
     ]);
     if (!info.affectedRows) throw new ResourceNotFoundError(employee.id);
-    // console.log(info);
     return employee;
   }
 

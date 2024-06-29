@@ -3,6 +3,8 @@ import './EmployeeList.css';
 import { EmployeeModel } from '../../../Models/EmployeeModel';
 import { employeeService } from '../../../Services/EmployeeService';
 import { EmployeeCard } from '../EmployeeCard/EmployeeCard';
+import { notify } from '../../../Utils/notify';
+import { errorHandler } from '../../../Utils/ErrorHandler';
 
 export function EmployeeList(): JSX.Element {
   const [employees, setEmployees] = useState<EmployeeModel[]>([]);
@@ -11,7 +13,7 @@ export function EmployeeList(): JSX.Element {
     employeeService
       .getAllEmployees()
       .then((data) => setEmployees(data))
-      .catch((err) => alert(err.message));
+      .catch((err) => notify.error(errorHandler.getError(err)));
   }, []);
 
   return (

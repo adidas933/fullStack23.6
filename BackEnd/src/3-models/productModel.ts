@@ -5,6 +5,7 @@ export class ProductModel {
   public id: number;
   public name: string;
   public price: number;
+  public stock: number;
   public image: UploadedFile; // Image bytes sent from frontend.
 
   // Copy Constructor
@@ -12,9 +13,11 @@ export class ProductModel {
     this.id = product.id;
     this.name = product.name;
     this.price = product.price;
+    this.stock = product.stock;
+
     this.image = product.image;
   }
-  
+
   public validate() {
     if (!this.name) throw new ValidationError('Missing name.');
     if (!this.price) throw new ValidationError('Missing price.');
@@ -25,5 +28,5 @@ export class ProductModel {
       throw new ValidationError("Name can't be over 100 digits");
   }
 
-   // Joi library can also check for validation error.
+  // Joi library can also check for validation error.
 }

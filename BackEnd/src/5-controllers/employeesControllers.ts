@@ -50,6 +50,8 @@ class EmployeeController {
     next: NextFunction
   ) {
     try {
+      // 
+      request.body.image = request.files?.image;
       const newEmployee = new EmployeeModel(request.body);
       const employee = await employeeService.postEmployee(newEmployee);
       response.status(StatusCode.Created).json(employee);

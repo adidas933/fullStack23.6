@@ -5,27 +5,26 @@ export class EmployeeModel {
   public id: number;
   public firstName: string;
   public lastName: string;
-  public birthDate: string;
   public image: UploadedFile; 
 
   private static insertValidationSchema = Joi.object({
-    id: Joi.number().forbidden(),
+    id: Joi.number(),
     firstName: Joi.string().max(50).required(),
     lastName: Joi.string().max(50).required(),
-    birthDate: Joi.string().isoDate().required(),
+    image: Joi.object()
+
   });
   private static updateValidationSchema = Joi.object({
-    id: Joi.number().required().min(1).integer(),
+    id: Joi.number(),
     firstName: Joi.string().max(50).required(),
     lastName: Joi.string().max(50).required(),
-    birthDate: Joi.string().isoDate().required(),
+    image: Joi.object()
   });
 
   public constructor(employee: EmployeeModel) {
     this.id = employee.id;
     this.firstName = employee.firstName;
     this.lastName = employee.lastName;
-    this.birthDate = employee.birthDate;
     this.image = employee.image;
   }
 
