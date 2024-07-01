@@ -20,7 +20,7 @@ class EmployeeService {
 
   public async getSpecificEmployee(id: number) {
     const sql =
-      "SELECT id, firstName, lastName, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees";
+      "SELECT id, firstName, lastName, CONCAT('http://localhost:4000/api/employees/images/', imageName) as imageUrl FROM employees WHERE id = ?";
     const employees = await dal.execute(sql, [id]);
     const employee = employees[0];
     if (!employee) throw new ResourceNotFoundError(id);
@@ -30,7 +30,6 @@ class EmployeeService {
 
   public async postEmployee(employee: EmployeeModel) {
     employee.validateInsert();
-
     const imageName = await fileSaver.add(
       employee.image,
       path.join(__dirname, '../1-assets/images/employeesImages/')
@@ -55,9 +54,10 @@ class EmployeeService {
 
   public async updateEmployee(employee: EmployeeModel) {
     employee.validateUpdate();
+
     const imageName = await fileSaver.add(
       employee.image,
-      path.join(__dirname, "../1-assets/images/employeesImages/")
+      path.join(__dirname, '../1-assets/images/employeesImages/')
     );
     const sql =
       'UPDATE employees SET firstName = ?, lastName = ?, imageName = ? WHERE id = ?';

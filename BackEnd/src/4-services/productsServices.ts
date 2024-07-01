@@ -35,9 +35,9 @@ class ProductService {
     // Save image to disk:
     const imageName = await fileSaver.add(
       product.image,
-      path.join(__dirname, "../1-assets/images/productsImages/")
+      path.join(__dirname, '../1-assets/images/productsImages/')
     );
- 
+
     // SQL:
     const sql =
       'INSERT INTO products (name, price, stock, imageName) VALUES (?, ?, ?, ?)';
