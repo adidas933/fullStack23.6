@@ -51,6 +51,7 @@ export function updateEmployee(
   currentState: EmployeeModel[],
   action: PayloadAction<EmployeeModel>
 ) {
+  
   return currentState.map((employee) =>
     employee.id === action.payload.id ? action.payload : employee
   );

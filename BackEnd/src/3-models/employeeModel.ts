@@ -5,7 +5,7 @@ export class EmployeeModel {
   public id: number;
   public firstName: string;
   public lastName: string;
-  public image: UploadedFile; 
+  public image?: UploadedFile; 
 
   private static insertValidationSchema = Joi.object({
     id: Joi.number(),

@@ -21,6 +21,7 @@ export function UpdateEmployee(): JSX.Element {
       notify.success('Employee has been updated');
       navigate('/employees');
     } catch (error: any) {
+      console.log(error);
       notify.error(errorHandler.getError(error));
     }
   };

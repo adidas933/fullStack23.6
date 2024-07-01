@@ -83,6 +83,7 @@ class ProductController {
     try {
       const id = +request.params.id;
       request.body.id = id;
+      request.body.image = request.files?.image;
       const product = new ProductModel(request.body);
       const updateProduct = await productService.updateProduct(product);
       response.json(updateProduct);

@@ -9,6 +9,10 @@ class EmployeeService {
 
     const response = await axios.get<EmployeeModel[]>(appConfig.employeeUrl);
     const employees = response.data;
+
+    const action = employeeActions.initEmployees(employees);
+    store.dispatch(action);
+
     return employees;
   }
 

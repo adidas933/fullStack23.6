@@ -71,6 +71,7 @@ class EmployeeController {
     try {
       const id = +request.params.id;
       request.body.id = id;
+      request.body.image = request.files?.image;
       const employee = new EmployeeModel(request.body);
       
       const updateEmployee = await employeeService.updateEmployee(employee);

@@ -24,7 +24,6 @@ class EmployeeService {
     const employees = await dal.execute(sql, [id]);
     const employee = employees[0];
     if (!employee) throw new ResourceNotFoundError(id);
-
     return employee;
   }
 
@@ -34,7 +33,6 @@ class EmployeeService {
       employee.image,
       path.join(__dirname, '../1-assets/images/employeesImages/')
     );
-
     // Create sql:
     const sql =
       'INSERT INTO employees (firstName, lastName, imageName) VALUES (?, ?, ?)';
@@ -44,17 +42,15 @@ class EmployeeService {
       employee.lastName,
       imageName,
     ]);
-
     // Get back the db employee:
     employee = await this.getSpecificEmployee(info.insertId);
-
     // Return:
     return employee;
   }
 
   public async updateEmployee(employee: EmployeeModel) {
     employee.validateUpdate();
-
+    // Save the image file and get the image name
     const imageName = await fileSaver.add(
       employee.image,
       path.join(__dirname, '../1-assets/images/employeesImages/')

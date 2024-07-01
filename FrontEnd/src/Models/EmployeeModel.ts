@@ -3,5 +3,5 @@ export class EmployeeModel {
   public firstName: string;
   public lastName: string;
   public imageUrl?: string;
-  public image?: File;
+  public image: File;
 }
